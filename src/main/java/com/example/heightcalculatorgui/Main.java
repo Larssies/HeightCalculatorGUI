@@ -1,5 +1,6 @@
 package com.example.heightcalculatorgui;
 
+import events.FullScreenEvent;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.System;
 
 public class Main extends Application {
 
@@ -22,12 +24,16 @@ public class Main extends Application {
 
     public static Label creditLabel;
 
+    public static Label systemLabel;
+
     public static void main(String[] args) {
         launch();
     }
 
     @Override
     public void start(Stage stage) {
+
+        String system = System.checkOperatingSystem();
 
         Image icon = new Image("file:src/main/java/utils/image.png");
         stage.getIcons().add(icon);
@@ -41,6 +47,7 @@ public class Main extends Application {
         convertButton = new Button("Convert");
         resultLabel = new Label();
         creditLabel = new Label();
+        systemLabel = new Label();
         convertButton.setOnAction(new ConvertButtonHandler());
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
@@ -53,6 +60,7 @@ public class Main extends Application {
         gridPane.add(convertButton, 1, 2);
         gridPane.add(resultLabel, 0, 3, 2, 1);
         gridPane.add(creditLabel, 0, 5, 3, 1);
+        gridPane.add(systemLabel, 2, 5, 7, 1);
         creditLabel.setText("Made by Larssies");
         VBox vbox = new VBox(gridPane);
         vbox.setSpacing(10);
@@ -60,5 +68,10 @@ public class Main extends Application {
         Scene scene = new Scene(vbox, 300, 200);
         stage.setScene(scene);
         stage.show();
+        systemLabel.setText(system);
+    }
+
+    public static void loadExperimentalFeatures(Stage stage, Scene scene) {
+        FullScreenEvent.displayFullScreen(scene, stage);
     }
 }
