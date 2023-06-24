@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,7 +27,11 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
+
+        Image icon = new Image("file:src/main/java/utils/image.png");
+        stage.getIcons().add(icon);
+
         stage.setTitle("Height Calculator v1");
         unitComboBox = new ComboBox<>();
         unitComboBox.getItems().addAll(UNIT_OPTIONS);
